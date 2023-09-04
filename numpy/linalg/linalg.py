@@ -20,7 +20,7 @@ import warnings
 from typing import NamedTuple, Any
 
 from .._utils import set_module
-from numpy.core import (
+from numpy._core import (
     array, asarray, zeros, empty, empty_like, intc, single, double,
     csingle, cdouble, inexact, complexfloating, newaxis, all, inf, dot,
     add, multiply, sqrt, sum, isfinite,
@@ -29,8 +29,8 @@ from numpy.core import (
     swapaxes, divide, count_nonzero, isnan, sign, argsort, sort,
     reciprocal
 )
-from numpy.core.multiarray import normalize_axis_index
-from numpy.core import overrides
+from numpy._core.multiarray import normalize_axis_index
+from numpy._core import overrides
 from numpy.lib._twodim_base_impl import triu, eye
 from numpy.linalg import _umath_linalg
 

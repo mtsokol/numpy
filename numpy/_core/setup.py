@@ -412,7 +412,7 @@ def configuration(parent_package='',top_path=None):
     from numpy.distutils.system_info import (get_info, blas_opt_info,
                                              lapack_opt_info)
 
-    config = Configuration('core', parent_package, top_path)
+    config = Configuration('_core', parent_package, top_path)
     local_dir = config.local_path
     codegen_dir = join(local_dir, 'code_generators')
 
@@ -655,7 +655,7 @@ def configuration(parent_package='',top_path=None):
     #                          npymath library                            #
     #######################################################################
 
-    subst_dict = dict([("sep", os.path.sep), ("pkgname", "numpy.core")])
+    subst_dict = dict([("sep", os.path.sep), ("pkgname", "numpy._core")])
 
     def get_mathlib_info(*args):
         # Another ugly hack: the mathlib info is known once build_src is run,
@@ -997,7 +997,7 @@ def configuration(parent_package='',top_path=None):
             join(codegen_dir, 'ufunc_docstrings.py'),
             ]
 
-    svml_path = join('numpy', 'core', 'src', 'umath', 'svml')
+    svml_path = join('numpy', '_core', 'src', 'umath', 'svml')
     svml_objs = []
     # we have converted the following into universal intrinsics
     # so we can bring the benefits of performance for all platforms

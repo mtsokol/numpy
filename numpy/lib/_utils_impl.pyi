@@ -9,7 +9,7 @@ from typing import (
 
 from numpy import generic
 from numpy.typing import NDArray
-from numpy.core.numerictypes import (
+from numpy._core.numerictypes import (
     issubdtype as issubdtype,
 )
 

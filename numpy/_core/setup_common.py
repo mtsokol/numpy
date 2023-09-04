@@ -93,12 +93,12 @@ def check_api_version(apiversion, codegen_dir):
     # codegen_dir have been updated without the API version being
     # updated. Any modification in those .txt files should be reflected
     # in the api and eventually abi versions.
-    # To compute the checksum of the current API, use numpy/core/cversions.py
+    # To compute the checksum of the current API, use numpy/_core/cversions.py
     if not curapi_hash == api_hash:
         msg = ("API mismatch detected, the C API version "
                "numbers have to be updated. Current C api version is "
                f"{apiversion}, with checksum {curapi_hash}, but recorded "
-               f"checksum in core/codegen_dir/cversions.txt is {api_hash}. If "
+               f"checksum in _core/codegen_dir/cversions.txt is {api_hash}. If "
                "functions were added in the C API, you have to update "
                f"C_API_VERSION in {__file__}."
                "\n"
@@ -137,7 +137,7 @@ for file in [
 
 # Mandatory functions: if not found, fail the build
 # Some of these can still be blocklisted if the C99 implementation
-# is buggy, see numpy/core/src/common/npy_config.h
+# is buggy, see numpy/_core/src/common/npy_config.h
 MANDATORY_FUNCS = [
     "sin", "cos", "tan", "sinh", "cosh", "tanh", "fabs",
     "floor", "ceil", "sqrt", "log10", "log", "exp", "asin",

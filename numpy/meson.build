@@ -409,7 +409,7 @@ configure_file(
   install_dir: np_dir,
 )
 
-subdir('core')
+subdir('_core')
 subdir('fft')
 subdir('linalg')
 subdir('random')

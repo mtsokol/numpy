@@ -281,6 +281,6 @@ jobs:
     # Using pytest directly, unable to use python runtests.py -n -t ...
     - name: Run linalg/ufunc/umath tests
       run: |
-        python -m pytest numpy/core/tests/test_umath* numpy/core/tests/test_ufunc.py numpy/linalg/tests/test_*
+        python -m pytest numpy/_core/tests/test_umath* numpy/_core/tests/test_ufunc.py numpy/linalg/tests/test_*
         # Can't run on SDE just yet: see https://github.com/numpy/numpy/issues/23545#issuecomment-1659047365
-        #sde -spr -- python -m pytest numpy/core/tests/test_umath* numpy/core/tests/test_ufunc.py numpy/linalg/tests/test_*
+        #sde -spr -- python -m pytest numpy/_core/tests/test_umath* numpy/_core/tests/test_ufunc.py numpy/linalg/tests/test_*

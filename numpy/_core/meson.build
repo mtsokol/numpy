@@ -149,7 +149,7 @@ endforeach
 
 # Mandatory functions: if not found, fail the build
 # Some of these can still be blocklisted if the C99 implementation
-# is buggy, see numpy/core/src/common/npy_config.h
+# is buggy, see numpy/_core/src/common/npy_config.h
 mandatory_funcs = [
   'sin', 'cos', 'tan', 'sinh', 'cosh', 'tanh', 'fabs',
   'floor', 'ceil', 'sqrt', 'log10', 'log', 'exp', 'asin',
@@ -506,7 +506,7 @@ _numpyconfig_h = configure_file(
   output: '_numpyconfig.h',
   configuration: cdata,
   install: true,
-  install_dir: np_dir / 'core/include/numpy'
+  install_dir: np_dir / '_core/include/numpy'
 )
 
 # Build npymath static library
@@ -544,7 +544,7 @@ npymath_lib = static_library('npymath',
   include_directories: ['include', 'src/npymath', 'src/common'],
   dependencies: py_dep,
   install: true,
-  install_dir: np_dir / 'core/lib',
+  install_dir: np_dir / '_core/lib',
   name_prefix: name_prefix_staticlib,
   name_suffix: name_suffix_staticlib,
 )
@@ -557,11 +557,11 @@ configure_file(
   input: 'npymath.ini.in',
   output: 'npymath.ini',
   configuration: configuration_data({
-    'pkgname' : 'numpy.core',
+    'pkgname' : 'numpy._core',
     'sep' : dir_separator,
   }),
   install: true,
-  install_dir: np_dir / 'core/lib/npy-pkg-config'
+  install_dir: np_dir / '_core/lib/npy-pkg-config'
 )
 configure_file(
   input: 'mlib.ini.in',
@@ -571,7 +571,7 @@ configure_file(
     'msvc_mathlib' : 'm.lib',
   }),
   install: true,
-  install_dir: np_dir / 'core/lib/npy-pkg-config'
+  install_dir: np_dir / '_core/lib/npy-pkg-config'
 )
 
 if false
@@ -587,8 +587,8 @@ if false
     description: 'Portable, core math library implementing C99 standard',
     url: 'https://github.com/numpy/numpy',
     requires: 'numpy',
-    install_dir: np_dir / 'core/lib/npy-pkg-config',
-    extra_cflags: '-I${includedir}' + np_dir / 'core' / 'include',
+    install_dir: np_dir / '_core/lib/npy-pkg-config',
+    extra_cflags: '-I${includedir}' + np_dir / '_core' / 'include',
   )
 endif
 
@@ -616,7 +616,7 @@ src_numpy_api = custom_target('__multiarray_api',
   input : 'code_generators/generate_numpy_api.py',
   command: [py, '@INPUT@', '-o', '@OUTDIR@', '--ignore', src_umath_api_c],
   install: true,  # NOTE: setup.py build installs all, but just need .h?
-  install_dir: np_dir / 'core/include/numpy'
+  install_dir: np_dir / '_core/include/numpy'
 )
 
 src_ufunc_api = custom_target('__ufunc_api',
@@ -624,7 +624,7 @@ src_ufunc_api = custom_target('__ufunc_api',
   input : 'code_generators/generate_ufunc_api.py',
   command: [py, '@INPUT@', '-o', '@OUTDIR@'],
   install: true,  # NOTE: setup.py build installs all, but just need .h?
-  install_dir: np_dir / 'core/include/numpy'
+  install_dir: np_dir / '_core/include/numpy'
 )
 
 
@@ -681,7 +681,7 @@ py.extension_module('_multiarray_tests',
   link_with: npymath_lib,
   gnu_symbol_visibility: 'default',
   install: true,
-  subdir: 'numpy/core',
+  subdir: 'numpy/_core',
 )
 
 _umath_tests_mtargets = mod_features.multi_targets(
@@ -716,7 +716,7 @@ foreach gen: test_modules_src
     include_directories: ['src/multiarray', 'src/npymath'],
     dependencies: np_core_dep,
     install: true,
-    subdir: 'numpy/core',
+    subdir: 'numpy/_core',
     link_with: gen[2],
   )
 endforeach
@@ -1145,7 +1145,7 @@ py.extension_module('_multiarray_umath',
   dependencies: blas_dep,
   link_with: [npymath_lib, multiarray_umath_mtargets.static_lib('_multiarray_umath_mtargets')],
   install: true,
-  subdir: 'numpy/core',
+  subdir: 'numpy/_core',
 )
 
 # Build SIMD module
@@ -1198,7 +1198,7 @@ py.extension_module('_simd',
   dependencies: np_core_dep,
   link_with: [npymath_lib, _simd_mtargets.static_lib('_simd_mtargets')],
   install: true,
-  subdir: 'numpy/core',
+  subdir: 'numpy/_core',
 )
 
 python_sources = [
@@ -1251,8 +1251,8 @@ python_sources = [
 
 py.install_sources(
   python_sources,
-  subdir: 'numpy/core'
+  subdir: 'numpy/_core'
 )
 
 subdir('include')
-install_subdir('tests', install_dir: np_dir / 'core')
+install_subdir('tests', install_dir: np_dir / '_core')

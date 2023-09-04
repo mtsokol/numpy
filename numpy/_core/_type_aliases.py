@@ -6,7 +6,7 @@ and sometimes other mappings too.
 
 .. data:: allTypes
     A dictionary of names to types that will be exposed as attributes through
-    ``np.core.numerictypes.*``
+    ``np._core.numerictypes.*``
 
 .. data:: sctypeDict
     Similar to `allTypes`, but maps a broader set of aliases to their types.
@@ -17,9 +17,9 @@ and sometimes other mappings too.
 
 """
 
-from numpy.core._string_helpers import english_lower
-from numpy.core.multiarray import typeinfo, dtype
-from numpy.core._dtype import _kind_name
+from numpy._core._string_helpers import english_lower
+from numpy._core.multiarray import typeinfo, dtype
+from numpy._core._dtype import _kind_name
 
 
 sctypeDict = {}      # Contains all leaf-node scalar types with aliases

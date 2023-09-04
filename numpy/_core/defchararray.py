@@ -22,8 +22,8 @@ from .numerictypes import (
     bytes_, str_, integer, int_, object_, bool_, character)
 from .numeric import ndarray, compare_chararrays
 from .numeric import array as narray
-from numpy.core.multiarray import _vec_string
-from numpy.core import overrides
+from numpy._core.multiarray import _vec_string
+from numpy._core import overrides
 from numpy._utils import asbytes
 import numpy
 
@@ -2738,7 +2738,7 @@ def array(obj, itemsize=None, copy=True, unicode=None, order=None):
        This class is provided for numarray backward-compatibility.
        New code (not concerned with numarray compatibility) should use
        arrays of type `bytes_` or `str_` and use the free functions
-       in :mod:`numpy.char <numpy.core.defchararray>` for fast
+       in :mod:`numpy.char <numpy._core.defchararray>` for fast
        vectorized string operations instead.
 
     Versus a NumPy array of dtype `bytes_` or `str_`, this

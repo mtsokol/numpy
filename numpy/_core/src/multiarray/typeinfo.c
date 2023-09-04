@@ -1,5 +1,5 @@
 /*
- * Provides namedtuples for numpy.core.multiarray.typeinfo
+ * Provides namedtuples for numpy._core.multiarray.typeinfo
  * Unfortunately, we need two different types to cover the cases where min/max
  * do and do not appear in the tuple.
  */
@@ -34,17 +34,17 @@ static PyStructSequence_Field typeinforanged_fields[] = {
 };
 
 static PyStructSequence_Desc typeinfo_desc = {
-    "numpy.core.multiarray.typeinfo",         /* name          */
-    "Information about a scalar numpy type",  /* doc           */
-    typeinfo_fields,                          /* fields        */
-    5,                                        /* n_in_sequence */
+    "numpy._core.multiarray.typeinfo",         /* name          */
+    "Information about a scalar numpy type",   /* doc           */
+    typeinfo_fields,                           /* fields        */
+    5,                                         /* n_in_sequence */
 };
 
 static PyStructSequence_Desc typeinforanged_desc = {
-    "numpy.core.multiarray.typeinforanged",                /* name          */
-    "Information about a scalar numpy type with a range",  /* doc           */
-    typeinforanged_fields,                                 /* fields        */
-    7,                                                     /* n_in_sequence */
+    "numpy._core.multiarray.typeinforanged",                /* name          */
+    "Information about a scalar numpy type with a range",   /* doc           */
+    typeinforanged_fields,                                  /* fields        */
+    7,                                                      /* n_in_sequence */
 };
 
 NPY_NO_EXPORT PyObject *

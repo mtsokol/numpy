@@ -12,7 +12,7 @@ import numpy.ma as ma
 from numpy import recarray
 from numpy.ma import masked, nomask
 from numpy.testing import temppath
-from numpy.core.records import (
+from numpy._core.records import (
     fromrecords as recfromrecords, fromarrays as recfromarrays
     )
 from numpy.ma.mrecords import (

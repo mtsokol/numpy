@@ -122,7 +122,7 @@ run_test()
   # see gh-21750, gh-21748
   if [ -n "$EXPECT_CPU_FEATURES" ]; then
     as_expected=$($PYTHON << EOF
-from numpy.core._multiarray_umath import (__cpu_baseline__, __cpu_dispatch__)
+from numpy._core._multiarray_umath import (__cpu_baseline__, __cpu_dispatch__)
 features = __cpu_baseline__ + __cpu_dispatch__
 expected = '$EXPECT_CPU_FEATURES'.upper().split()
 diff = set(expected).difference(set(features))
