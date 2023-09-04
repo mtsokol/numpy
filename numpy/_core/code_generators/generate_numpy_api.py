@@ -126,7 +126,10 @@ _import_array(void)
 #define import_array() { \
   if (_import_array() < 0) { \
     PyErr_Print(); \
-    PyErr_SetString(PyExc_ImportError, "numpy._core.multiarray failed to import"); \
+    PyErr_SetString( \
+        PyExc_ImportError, \
+        "numpy._core.multiarray failed to import" \
+    ); \
     return NULL; \
   } \
 }
@@ -134,7 +137,10 @@ _import_array(void)
 #define import_array1(ret) { \
   if (_import_array() < 0) { \
     PyErr_Print(); \
-    PyErr_SetString(PyExc_ImportError, "numpy._core.multiarray failed to import"); \
+    PyErr_SetString( \
+        PyExc_ImportError, \
+        "numpy._core.multiarray failed to import" \
+    ); \
     return ret; \
   } \
 }

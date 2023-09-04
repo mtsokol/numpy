@@ -46,7 +46,10 @@ Provide target branch name or `uncommitted` to check before committing:
 PROJECT_MODULE = "numpy"
 PROJECT_ROOT_FILES = ['numpy', 'LICENSE.txt', 'setup.py']
 SAMPLE_TEST = "numpy/linalg/tests/test_linalg.py::test_byteorder_check"
-SAMPLE_TEST2 = "numpy/_core/tests/test_memmap.py::TestMemmap::test_open_with_filename"
+SAMPLE_TEST2 = (
+    "numpy/_core/tests/test_memmap.py::" 
+    "TestMemmap::test_open_with_filename"
+)
 SAMPLE_SUBMODULE = "linalg"
 
 EXTRA_PATH = ['/usr/lib/ccache', '/usr/lib/f90cache',
