@@ -118,6 +118,7 @@ else:
         your python interpreter from there."""
         raise ImportError(msg) from e
 
+    from . import core
     from . import _core
     from ._core import (
         _no_nep50_warning, memmap, iinfo, finfo,
@@ -248,7 +249,7 @@ else:
     __numpy_submodules__ = {
         "linalg", "fft", "dtypes", "random", "polynomial", "ma", 
         "exceptions", "lib", "ctypeslib", "testing", "typing",
-        "f2py", "test"
+        "f2py", "test", "core"
     }
 
     # We build warning messages for former attributes
