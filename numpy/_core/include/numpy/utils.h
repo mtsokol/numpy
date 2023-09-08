@@ -36,15 +36,13 @@
 #define NPY_CAT_(a, b) NPY_CAT__(a, b)
 #define NPY_CAT(a, b) NPY_CAT_(a, b)
 
-static char get_installed_numpy_major_version()
+static PyObject *_npy_import_numpy_multiarray_umath()
 {
-    PyObject *numpy = PyImport_ImportModule("numpy");
-    PyObject *version_obj = PyObject_GetAttrString(numpy, "__version__");
-    Py_DECREF(numpy);
-    char major_version = PyUnicode_ReadChar(version_obj, 0);
-    Py_DECREF(version_obj);
-
-    return major_version;
+    PyObject *multiarray = PyImport_ImportModule("numpy._core._multiarray_umath");
+    if (multiarray == NULL) {
+        multiarray = PyImport_ImportModule("numpy.core._multiarray_umath");
+    }
+    return multiarray;
 }
 
 #endif  /* NUMPY_CORE_INCLUDE_NUMPY_UTILS_H_ */

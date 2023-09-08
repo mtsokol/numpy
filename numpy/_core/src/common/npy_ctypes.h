@@ -22,15 +22,7 @@ npy_ctypes_check(PyTypeObject *obj)
     PyObject *ret_obj;
     int ret;
 
-    char numpy_major_version = get_installed_numpy_major_version();
-    char *numpy_core_internal_path = NULL;
-    if (numpy_major_version == '2') {
-        numpy_core_internal_path = "numpy._core._internal";
-    } else {
-        numpy_core_internal_path = "numpy.core._internal";
-    }
-
-    npy_cache_import(numpy_core_internal_path, "npy_ctypes_check", &py_func);
+    npy_cache_import("numpy._core._internal", "npy_ctypes_check", &py_func);
     if (py_func == NULL) {
         goto fail;
     }
