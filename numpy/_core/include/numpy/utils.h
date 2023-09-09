@@ -39,7 +39,11 @@
 static PyObject *_npy_import_numpy_multiarray_umath()
 {
     PyObject *multiarray = PyImport_ImportModule("numpy._core._multiarray_umath");
-    if (multiarray == NULL) {
+    if (
+        multiarray == NULL && 
+        PyErr_ExceptionMatches(PyExc_ModuleNotFoundError)
+    ) {
+        PyErr_Clear();
         multiarray = PyImport_ImportModule("numpy.core._multiarray_umath");
     }
     return multiarray;

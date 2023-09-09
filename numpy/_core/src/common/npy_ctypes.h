@@ -4,7 +4,6 @@
 #include <Python.h>
 
 #include "npy_import.h"
-#include "numpy/utils.h"
 
 /*
  * Check if a python type is a ctypes class.
