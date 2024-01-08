@@ -29,6 +29,7 @@
 #include "array_assign.h"
 #include "npy_dlpack.h"
 #include "multiarraymodule.h"
+#include "mapping.h"
 
 #include "methods.h"
 #include "alloc.h"
@@ -1285,11 +1286,6 @@ array_sort(PyArrayObject *self,
         newd->names = new_name;
         ((PyArrayObject_fields *)self)->descr = newd;
     }
-    if (descending) {
-        PyErr_SetString(PyExc_ValueError,
-            "`descending=True` is not allowed. Use `np.flip` instead");
-        return NULL;
-    }
     if (sortkind != NPY_SORT_UNDEFINED && stable != NPY_STABLE_UNDEFINED) {
         PyErr_SetString(PyExc_ValueError,
             "`kind` and `stable` parameters can't be provided at "
@@ -1312,6 +1308,35 @@ array_sort(PyArrayObject *self,
     if (val < 0) {
         return NULL;
     }
+    if (descending) {
+        int ndim = PyArray_NDIM(self);
+        int normalized_axis = axis;
+
+        if (check_and_adjust_axis(&normalized_axis, ndim) < 0) {
+            return NULL;
+        }
+
+        PyObject *indices = PyTuple_New(ndim);
+
+        for (int i=0; i<ndim; i++) {
+            PyObject *slice;
+            if (i == normalized_axis) {
+                slice = PySlice_New(Py_None, Py_None, PyLong_FromLong(-1));
+            } else {
+                slice = PySlice_New(Py_None, Py_None, Py_None);
+            }
+            PyTuple_SetItem(indices, i, slice);
+        }
+
+        PyArrayObject* result = (PyArrayObject *)array_subscript(self, indices);
+        if (result < 0) {
+            return NULL;
+        }
+        if (PyArray_CopyInto(self, result) < 0) {
+            return NULL;
+        }
+    }
+
     Py_RETURN_NONE;
 }
 
